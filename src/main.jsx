@@ -1,5 +1,5 @@
+import ReactDOM from 'react-dom/client'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import App from './App'
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, split } from '@apollo/client'
 import { setContext } from 'apollo-link-context'
@@ -8,6 +8,7 @@ import { WebSocketLink } from '@apollo/client/link/ws'
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('library-token')
+
   return {
     headers: {
       ...headers,
@@ -15,7 +16,10 @@ const authLink = setContext((_, { headers }) => {
     }
   }
 })
-const httpLink = new HttpLink({ uri: 'https://leproyect-backend-production.up.railway.app/' })
+
+const httpLink = new HttpLink({
+  uri: 'https://leproyect-backend-production.up.railway.app/'
+})
 
 const wsLink = new WebSocketLink({
   uri: `wss://leproyect-backend-production.up.railway.app/graphql`,
@@ -30,10 +34,10 @@ const splitLink = split(
     return (
       definition.kind === 'OperationDefinition' &&
       definition.operation === 'subscription'
-    );
+    )
   },
   wsLink,
-  authLink.concat(httpLink),
+  authLink.concat(httpLink)
 )
 
 const client = new ApolloClient({
@@ -41,8 +45,9 @@ const client = new ApolloClient({
   link: splitLink
 })
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}>
     <App />
-  </ApolloProvider>,
-  document.getElementById('root'))
+  </ApolloProvider>
+)
+

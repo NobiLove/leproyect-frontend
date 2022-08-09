@@ -21,7 +21,7 @@ const App = () => {
       notify(`${book.title} added`)
       client.cache.updateQuery({ query: allBooks }, ({ allBooks }) => {
         return {
-          allBooks: allBooks.concat(book),
+          allBooks: allBooks.concat(book)
         }
       })
     }
