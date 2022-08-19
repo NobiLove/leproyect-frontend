@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import Authors from './components/Authors'
-import Books from './components/Books'
-import NewBook from './components/NewBook'
-import LoginForm from './components/LoginForm'
+import Authors from './pages/Authors'
+import Books from './pages/Books'
+import NewBook from './pages/NewBook'
+import LoginForm from './pages/LoginForm'
+import Recommendations from './pages/Recommendations'
 import Notify from './components/Notify'
-import { useApolloClient, useSubscription } from '@apollo/client'
-import Recommendations from './components/Recommendations'
-import { BOOK_ADDED, allBooks } from './graphql/queries'
 import Button from './components/Button'
+import { BOOK_ADDED, allBooks } from './graphql/queries'
+import { useApolloClient, useSubscription } from '@apollo/client'
 
 const App = () => {
   const [page, setPage] = useState('authors')
@@ -43,17 +43,15 @@ const App = () => {
 
   if (!token) {
     return (
-      //<div className="bg-zinc-900 h-screen text-white">
-      <div>
+      <div className="flex items-center justify-center bg-zinc-900 h-screen text-white ">
         <Notify errorMessage={errorMessage} />
-        <h2>Login</h2>
         <LoginForm setToken={setToken} setError={notify} />
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="flex items-center justify-center bg-zinc-900 h-screen text-white ">
       <div>
         <Button onClick={() => setPage('authors')} text='Authors' />
         <Button onClick={() => setPage('books')} text='Books' />

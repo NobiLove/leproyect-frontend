@@ -1,7 +1,7 @@
 import { useLazyQuery } from '@apollo/client';
 import React, { useEffect } from 'react'
 import { allBooks } from '../graphql/queries';
-import Button from './Button';
+import Button from '../components/Button';
 
 const Books = ({ show, setError }) => {
   const [loadData, { loading, data }] = useLazyQuery(allBooks, {
