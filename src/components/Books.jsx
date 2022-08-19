@@ -1,6 +1,7 @@
 import { useLazyQuery } from '@apollo/client';
 import React, { useEffect } from 'react'
 import { allBooks } from '../graphql/queries';
+import Button from './Button';
 
 const Books = ({ show, setError }) => {
   const [loadData, { loading, data }] = useLazyQuery(allBooks, {
@@ -27,13 +28,13 @@ const Books = ({ show, setError }) => {
     <div>
       <h2>Books</h2>
       <div>
-        <button onClick={() => loadData({ variables: { genres: "refactoring" } })}>Refactoring</button>
-        <button onClick={() => loadData({ variables: { genres: "agile" } })}>Agile</button>
-        <button onClick={() => loadData({ variables: { genres: "patterns" } })}>Patterns</button>
-        <button onClick={() => loadData({ variables: { genres: "design" } })}>Design</button>
-        <button onClick={() => loadData({ variables: { genres: "crime" } })}>Crime</button>
-        <button onClick={() => loadData({ variables: { genres: "classic" } })}>Classic</button>
-        <button onClick={() => loadData({})}>All Genres</button>
+        <Button onClick={() => loadData({ variables: { genres: "refactoring" } })} text='Refactoring' />
+        <Button onClick={() => loadData({ variables: { genres: "agile" } })} text='Agile' />
+        <Button onClick={() => loadData({ variables: { genres: "patterns" } })} text='Patterns' />
+        <Button onClick={() => loadData({ variables: { genres: "design" } })} text='Design' />
+        <Button onClick={() => loadData({ variables: { genres: "crime" } })} text='Crime' />
+        <Button onClick={() => loadData({ variables: { genres: "classic" } })} text='Classic' />
+        <Button onClick={() => loadData({})} text='All Genres' />
       </div>
       <table>
         <tbody>

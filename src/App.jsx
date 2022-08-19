@@ -7,6 +7,7 @@ import Notify from './components/Notify'
 import { useApolloClient, useSubscription } from '@apollo/client'
 import Recommendations from './components/Recommendations'
 import { BOOK_ADDED, allBooks } from './graphql/queries'
+import Button from './components/Button'
 
 const App = () => {
   const [page, setPage] = useState('authors')
@@ -42,6 +43,7 @@ const App = () => {
 
   if (!token) {
     return (
+      //<div className="bg-zinc-900 h-screen text-white">
       <div>
         <Notify errorMessage={errorMessage} />
         <h2>Login</h2>
@@ -53,11 +55,11 @@ const App = () => {
   return (
     <div>
       <div>
-        <button onClick={() => setPage('authors')}>Authors</button>
-        <button onClick={() => setPage('books')}>Books</button>
-        <button onClick={() => setPage('add')}>Add Book</button>
-        <button onClick={() => setPage('recommendations')}>Recommendations</button>
-        <button onClick={() => logout()}>Logout</button>
+        <Button onClick={() => setPage('authors')} text='Authors' />
+        <Button onClick={() => setPage('books')} text='Books' />
+        <Button onClick={() => setPage('add')} text='Add Book' />
+        <Button onClick={() => setPage('recommendations')} text='Recommendations' />
+        <Button onClick={() => logout()} text='Logout' />
       </div>
       <Notify errorMessage={errorMessage} />
       <Authors show={page === 'authors'} setError={notify} />

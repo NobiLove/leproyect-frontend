@@ -5,6 +5,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, split } from '@a
 import { setContext } from 'apollo-link-context'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
+import "./main.css";
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('library-token')
