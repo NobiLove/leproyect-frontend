@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { create_Book, allBooks, allAuthors } from '../graphql/queries'
+import Label from '../components/Label'
+import Input from '../components/Input'
+import Button from '../components/Button'
 
 const NewBook = ({ setError }) => {
   const [title, setTitle] = useState('')
@@ -36,20 +39,27 @@ const NewBook = ({ setError }) => {
       <h2>Add Book</h2>
       <form onSubmit={submit}>
         <div>
-          Title:<input value={title} onChange={({ target }) => setTitle(target.value)} />
+          <Label text={'Title:'} />
+          <Input value={title} onChange={({ target }) => setTitle(target.value)} />
         </div>
         <div>
-          Author:<input value={author} onChange={({ target }) => setAuthor(target.value)} />
+          <Label text={'Author:'} />
+          <Input value={author} onChange={({ target }) => setAuthor(target.value)} />
         </div>
         <div>
-          Published:<input type="number" value={published} onChange={({ target }) => setPublished(target.value)} />
+          <Label text={'Published:'} />
+          <Input type="number" value={published} onChange={({ target }) => setPublished(target.value)} />
         </div>
         <div>
-          <input value={genre} onChange={({ target }) => setGenre(target.value)} />
+          <Label text={'Add genre:'} />
+          <Input value={genre} onChange={({ target }) => setGenre(target.value)} />
           <button onClick={addGenre} type="button">Add Genre</button>
         </div>
-        <div>Genres: {genres.join(' ')}</div>
-        <button type="submit">Create Book</button>
+        <div>
+          <Label text={'Genres:'} />
+          {genres.join(' ')}
+        </div>
+        <Button text={'Create Book<'} />
       </form>
     </div>
   )

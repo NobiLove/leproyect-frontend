@@ -1,7 +1,10 @@
 import { useQuery, useMutation } from '@apollo/client';
 import React, { useState } from 'react'
 import Select from 'react-select'
-import { allAuthors, editAuthor } from '../graphql/queries';
+import { allAuthors, editAuthor } from '../graphql/queries'
+import Button from '../components/Button'
+import Label from '../components/Label'
+import Input from '../components/Input'
 
 const Authors = ({ setError }) => {
   const { loading, data } = useQuery(allAuthors, {
@@ -35,7 +38,7 @@ const Authors = ({ setError }) => {
     <div>
       <div>
         <h2>Authors</h2>
-        <table>
+        <table className='py-5'>
           <tbody>
             <tr>
               <th>Name</th>
@@ -55,9 +58,10 @@ const Authors = ({ setError }) => {
       <div>
         <h2>Set Born</h2>
         <form onSubmit={handleUpdateBorn}>
-          <Select onChange={handleSelect} options={options} /><br></br>
-          Born: <input value={born} onChange={({ target }) => setBorn(target.value)} />
-          <button type='submit'>Update Born</button>
+          <Select onChange={handleSelect} options={options} />
+          <Label text={'Born: '} />
+          <Input value={born} onChange={({ target }) => setBorn(target.value)} />
+          <Button text={'Update Born'} />
         </form>
       </div>
     </div>

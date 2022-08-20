@@ -31,9 +31,9 @@ const LoginForm = ({ setError, setToken }) => {
     event.preventDefault()
     login({ variables: { username, password } })
   }
-
+  //w-full max-w-xs m-auto
   return (
-    <div className='flex'>
+    <div className='flex h-screen justify-center place-items-center'>
       <form className='bg-slate-800 rounded-lg shadow-md' onSubmit={submit}>
         <div className='mx-4 my-2 py-1'>
           <Label text={'Username: '} />

@@ -5,11 +5,11 @@ import NewBook from './pages/NewBook'
 import LoginForm from './pages/LoginForm'
 import Recommendations from './pages/Recommendations'
 import NotFound from './pages/NotFound'
+import Menu from './components/Menu'
 import Notify from './components/Notify'
 import { BOOK_ADDED, allBooks } from './graphql/queries'
 import { useApolloClient, useSubscription } from '@apollo/client'
 import { Route, Routes } from 'react-router-dom'
-import Menu from './components/Menu'
 import { useNavigate } from 'react-router-dom'
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
   return (
     <div className=" bg-zinc-900 text-white h-screen">
       <Notify errorMessage={errorMessage} />
-      {token ? <Menu logout={logout} /> : <p>Library</p>}
+      {token && <Menu logout={logout} />}
       <Routes>
         <Route path="/" element={<LoginForm setError={notify} setToken={setToken} />} />
         <Route path="/Authors" element={<Authors setError={notify} />} />
