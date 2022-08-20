@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { allBooks } from '../graphql/queries';
 import Button from '../components/Button';
 
-const Books = ({ show, setError }) => {
+const Books = ({ setError }) => {
   const [loadData, { loading, data }] = useLazyQuery(allBooks, {
     onError: (error) => {
       setError(error.graphQLErrors[0].message)
@@ -14,9 +14,6 @@ const Books = ({ show, setError }) => {
     loadData()
   }, []) // eslint-disable-line
 
-  if (!show) {
-    return null
-  }
   if (loading) {
     return <div>Loading...</div>
   }

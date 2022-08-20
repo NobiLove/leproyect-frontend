@@ -6,6 +6,7 @@ import { setContext } from 'apollo-link-context'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import "./main.css";
+import { BrowserRouter as Router } from "react-router-dom"
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('library-token')
@@ -48,7 +49,9 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>
 )
 

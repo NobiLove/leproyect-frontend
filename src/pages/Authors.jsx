@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import { allAuthors, editAuthor } from '../graphql/queries';
 
-const Authors = ({ show, setError }) => {
+const Authors = ({ setError }) => {
   const { loading, data } = useQuery(allAuthors, {
     onError: (error) => {
       setError(error.graphQLErrors[0].message)
@@ -14,9 +14,6 @@ const Authors = ({ show, setError }) => {
   const [born, setBorn] = useState(0)
   const [name, setName] = useState('')
 
-  if (!show) {
-    return null
-  }
   if (loading) {
     return <div>Loading...</div>
   }

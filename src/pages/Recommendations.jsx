@@ -1,8 +1,9 @@
 import { useQuery, useLazyQuery } from '@apollo/client';
 import React from 'react'
+import Button from '../components/Button';
 import { allBooksRecommended, me } from '../graphql/queries';
 
-const Recommendations = ({ show, setError }) => {
+const Recommendations = ({ setError }) => {
   const user = useQuery(me)
   const [loadData, { loading, data }] = useLazyQuery(allBooksRecommended, {
     onError: (error) => {
@@ -10,9 +11,6 @@ const Recommendations = ({ show, setError }) => {
     }
   })
 
-  if (!show) {
-    return null
-  }
   if (loading) {
     return <div>Loading...</div>
   }
@@ -20,7 +18,7 @@ const Recommendations = ({ show, setError }) => {
     return (
       <>
         <div>Press button to load recommendations</div>
-        <button className="blue-button" type="button" onClick={() => loadData({ variables: { genres: user.data.me.favoriteGenre } })}>Load</button>
+        <Button text='Load' onClick={() => loadData({ variables: { genres: user.data.me.favoriteGenre } })} />
       </>
     )
   }
@@ -28,7 +26,7 @@ const Recommendations = ({ show, setError }) => {
     <div>
       <h2>Recommendations</h2>
       <h3>Favorite Genre: {data.me.favoriteGenre}</h3>
-      <button className="blue-button" type="button" onClick={() => loadData({ variables: { genres: user.data.me.favoriteGenre } })}>Reload</button>
+      <Button text='Reload' onClick={() => loadData({ variables: { genres: user.data.me.favoriteGenre } })} />
       <table>
         <tbody>
           <tr>

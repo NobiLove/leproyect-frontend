@@ -4,10 +4,12 @@ import { LOGIN } from '../graphql/queries'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Label from '../components/Label'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = ({ setError, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const [login, result] = useMutation(LOGIN, {
     onError: (error) => {
@@ -18,8 +20,10 @@ const LoginForm = ({ setError, setToken }) => {
   useEffect(() => {
     if (result.data) {
       const token = result.data.login.value
+      console.log(token);
       setToken(token)
       localStorage.setItem('library-token', token)
+      navigate('/Authors')
     }
   }, [result.data]) // eslint-disable-line
 
@@ -29,7 +33,7 @@ const LoginForm = ({ setError, setToken }) => {
   }
 
   return (
-    <div>
+    <div className='flex'>
       <form className='bg-slate-800 rounded-lg shadow-md' onSubmit={submit}>
         <div className='mx-4 my-2 py-1'>
           <Label text={'Username: '} />

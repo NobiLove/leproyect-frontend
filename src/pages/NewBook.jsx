@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { create_Book, allBooks, allAuthors } from '../graphql/queries'
 
-const NewBook = ({ show, setError }) => {
+const NewBook = ({ setError }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [published, setPublished] = useState(0)
@@ -15,10 +15,6 @@ const NewBook = ({ show, setError }) => {
       setError(error.graphQLErrors[0].message)
     }
   })
-
-  if (!show) {
-    return null
-  }
 
   const submit = async (event) => {
     event.preventDefault()

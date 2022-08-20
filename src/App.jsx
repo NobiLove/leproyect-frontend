@@ -4,16 +4,19 @@ import Books from './pages/Books'
 import NewBook from './pages/NewBook'
 import LoginForm from './pages/LoginForm'
 import Recommendations from './pages/Recommendations'
+import NotFound from './pages/NotFound'
 import Notify from './components/Notify'
-import Button from './components/Button'
 import { BOOK_ADDED, allBooks } from './graphql/queries'
 import { useApolloClient, useSubscription } from '@apollo/client'
+import { Route, Routes } from 'react-router-dom'
+import Menu from './components/Menu'
+import { useNavigate } from 'react-router-dom'
 
 const App = () => {
-  const [page, setPage] = useState('authors')
   const [token, setToken] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const client = useApolloClient()
+  const navigate = useNavigate()
 
   useSubscription(BOOK_ADDED, {
     onSubscriptionData: ({ subscriptionData }) => {
@@ -39,31 +42,21 @@ const App = () => {
     setToken(null)
     localStorage.clear()
     client.resetStore()
-  }
-
-  if (!token) {
-    return (
-      <div className="flex items-center justify-center bg-zinc-900 h-screen text-white ">
-        <Notify errorMessage={errorMessage} />
-        <LoginForm setToken={setToken} setError={notify} />
-      </div>
-    )
+    navigate('/')
   }
 
   return (
-    <div className="flex items-center justify-center bg-zinc-900 h-screen text-white ">
-      <div>
-        <Button onClick={() => setPage('authors')} text='Authors' />
-        <Button onClick={() => setPage('books')} text='Books' />
-        <Button onClick={() => setPage('add')} text='Add Book' />
-        <Button onClick={() => setPage('recommendations')} text='Recommendations' />
-        <Button onClick={() => logout()} text='Logout' />
-      </div>
+    <div className=" bg-zinc-900 text-white h-screen">
       <Notify errorMessage={errorMessage} />
-      <Authors show={page === 'authors'} setError={notify} />
-      <Books show={page === 'books'} setError={notify} />
-      <NewBook show={page === 'add'} setError={notify} />
-      <Recommendations show={page === 'recommendations'} setError={notify} />
+      {token ? <Menu logout={logout} /> : <p>Library</p>}
+      <Routes>
+        <Route path="/" element={<LoginForm setError={notify} setToken={setToken} />} />
+        <Route path="/Authors" element={<Authors setError={notify} />} />
+        <Route path="/Books" element={<Books setError={notify} />} />
+        <Route path="/AddBook" element={<NewBook setError={notify} />} />
+        <Route path="/Recommendations" element={<Recommendations setError={notify} />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   )
 }
