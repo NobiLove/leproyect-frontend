@@ -46,17 +46,19 @@ const App = () => {
   }
 
   return (
-    <div className=" bg-zinc-900 text-white h-screen">
-      <Notify errorMessage={errorMessage} />
-      {token && <Menu logout={logout} />}
-      <Routes>
-        <Route path="/" element={<LoginForm setError={notify} setToken={setToken} />} />
-        <Route path="/Authors" element={<Authors setError={notify} />} />
-        <Route path="/Books" element={<Books setError={notify} />} />
-        <Route path="/AddBook" element={<NewBook setError={notify} />} />
-        <Route path="/Recommendations" element={<Recommendations setError={notify} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+    <div className="bg-zinc-900 text-white h-screen">
+      <div className="container mx-auto">
+        <Notify errorMessage={errorMessage} />
+        {token && <Menu logout={logout} />}
+        <Routes>
+          <Route path="/" element={<LoginForm setError={notify} setToken={setToken} />} />
+          <Route path="/Authors" element={<Authors setError={notify} />} />
+          <Route path="/Books" element={<Books setError={notify} />} />
+          <Route path="/AddBook" element={<NewBook setError={notify} />} />
+          <Route path="/Recommendations" element={<Recommendations setError={notify} />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </div>
   )
 }

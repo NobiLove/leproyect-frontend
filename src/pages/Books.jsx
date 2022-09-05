@@ -23,8 +23,10 @@ const Books = ({ setError }) => {
 
   return (
     <div>
-      <h2>Books</h2>
       <div>
+        <h1 className='flex justify-center text-4xl pb-6'>Books</h1>
+      </div>
+      <div className='flex justify-around pb-4'>
         <Button onClick={() => loadData({ variables: { genres: "refactoring" } })} text='Refactoring' />
         <Button onClick={() => loadData({ variables: { genres: "agile" } })} text='Agile' />
         <Button onClick={() => loadData({ variables: { genres: "patterns" } })} text='Patterns' />
@@ -33,22 +35,26 @@ const Books = ({ setError }) => {
         <Button onClick={() => loadData({ variables: { genres: "classic" } })} text='Classic' />
         <Button onClick={() => loadData({})} text='All Genres' />
       </div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Published</th>
-          </tr>
-          {data.allBooks.map((a) => (
-            <tr key={a.id}>
-              <td>{a.title}</td>
-              <td>{a.author.name}</td>
-              <td>{a.published}</td>
+      <div className='flex justify-center'>
+        <table className='border-separate border-spacing-2 border border-slate-500'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Published</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.allBooks.map((a) => (
+              <tr key={a.id}>
+                <td>{a.title}</td>
+                <td>{a.author.name}</td>
+                <td>{a.published}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div >
   )
 }
