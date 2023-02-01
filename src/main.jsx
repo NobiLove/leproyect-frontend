@@ -9,7 +9,7 @@ import './main.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('library-token')
+  const token = window.localStorage.getItem('library-token')
 
   return {
     headers: {

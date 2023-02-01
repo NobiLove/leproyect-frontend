@@ -39,7 +39,7 @@ const App = () => {
 
   const logout = () => {
     setToken(null)
-    localStorage.clear()
+    window.localStorage.clear()
     client.resetStore()
     navigate('/')
   }

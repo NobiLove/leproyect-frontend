@@ -22,16 +22,16 @@ const LoginForm = ({ setError, setToken }) => {
       const token = result.data.login.value
       console.log(token)
       setToken(token)
-      localStorage.setItem('library-token', token)
+      window.localStorage.setItem('library-token', token)
       navigate('/Authors')
     }
-  }, [result.data]) // eslint-disable-line
+  }, [result.data])
 
   const submit = async (event) => {
     event.preventDefault()
     login({ variables: { username, password } })
   }
-  // w-full max-w-xs m-auto
+
   return (
     <div className='container mx-auto flex h-screen justify-center place-items-center'>
       <form className='bg-slate-800 rounded-lg shadow-md' onSubmit={submit}>
