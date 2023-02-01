@@ -5,8 +5,8 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, split } from '@a
 import { setContext } from 'apollo-link-context'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
-import "./main.css";
-import { BrowserRouter as Router } from "react-router-dom"
+import './main.css'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('library-token')
@@ -14,7 +14,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `bearer ${token}` : null,
+      authorization: token ? `bearer ${token}` : null
     }
   }
 })
@@ -24,7 +24,7 @@ const httpLink = new HttpLink({
 })
 
 const wsLink = new WebSocketLink({
-  uri: `wss://leproyect-backend-production.up.railway.app/graphql`,
+  uri: 'wss://leproyect-backend-production.up.railway.app/graphql',
   options: {
     reconnect: true
   }
@@ -54,4 +54,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Router>
   </ApolloProvider>
 )
-

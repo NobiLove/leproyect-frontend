@@ -9,8 +9,7 @@ import Menu from './components/Menu'
 import Notify from './components/Notify'
 import { BOOK_ADDED, allBooks } from './graphql/queries'
 import { useApolloClient, useSubscription } from '@apollo/client'
-import { Route, Routes } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
 const App = () => {
   const [token, setToken] = useState(null)
@@ -46,17 +45,17 @@ const App = () => {
   }
 
   return (
-    <div className="bg-zinc-900 text-white h-screen">
-      <div className="container mx-auto">
+    <div className='bg-zinc-900 text-white h-screen'>
+      <div className='container mx-auto'>
         <Notify errorMessage={errorMessage} />
         {token && <Menu logout={logout} />}
         <Routes>
-          <Route path="/" element={<LoginForm setError={notify} setToken={setToken} />} />
-          <Route path="/Authors" element={<Authors setError={notify} />} />
-          <Route path="/Books" element={<Books setError={notify} />} />
-          <Route path="/AddBook" element={<NewBook setError={notify} />} />
-          <Route path="/Recommendations" element={<Recommendations setError={notify} />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path='/' element={<LoginForm setError={notify} setToken={setToken} />} />
+          <Route path='/Authors' element={<Authors setError={notify} />} />
+          <Route path='/Books' element={<Books setError={notify} />} />
+          <Route path='/AddBook' element={<NewBook setError={notify} />} />
+          <Route path='/Recommendations' element={<Recommendations setError={notify} />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
     </div>

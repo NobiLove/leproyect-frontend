@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client'
 import React, { useState } from 'react'
 import Select from 'react-select'
 import { allAuthors, editAuthor } from '../graphql/queries'
@@ -24,13 +24,13 @@ const Authors = ({ setError }) => {
     return { value: a.name, label: a.name }
   })
 
-  function handleSelect(e) {
+  function handleSelect (e) {
     setName(e.value)
   }
 
-  function handleUpdateBorn(e) {
+  function handleUpdateBorn (e) {
     e.preventDefault()
-    changueBorn({ variables: { name: name, born: parseInt(born, 10) } })
+    changueBorn({ variables: { name, born: parseInt(born, 10) } })
     setBorn(0)
   }
 
@@ -59,9 +59,9 @@ const Authors = ({ setError }) => {
         <h2>Set Born</h2>
         <form onSubmit={handleUpdateBorn}>
           <Select onChange={handleSelect} options={options} />
-          <Label text={'Born: '} />
+          <Label text='Born: ' />
           <Input value={born} onChange={({ target }) => setBorn(target.value)} />
-          <Button text={'Update Born'} />
+          <Button text='Update Born' />
         </form>
       </div>
     </div>

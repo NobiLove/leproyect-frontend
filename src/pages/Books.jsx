@@ -1,7 +1,7 @@
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client'
 import React, { useEffect } from 'react'
-import { allBooks } from '../graphql/queries';
-import Button from '../components/Button';
+import { allBooks } from '../graphql/queries'
+import Button from '../components/Button'
 
 const Books = ({ setError }) => {
   const [loadData, { loading, data }] = useLazyQuery(allBooks, {
@@ -12,7 +12,7 @@ const Books = ({ setError }) => {
 
   useEffect(() => {
     loadData()
-  }, []) // eslint-disable-line
+  }, [])
 
   if (loading) {
     return <div>Loading...</div>
@@ -27,12 +27,12 @@ const Books = ({ setError }) => {
         <h1 className='flex justify-center text-4xl pb-6'>Books</h1>
       </div>
       <div className='flex justify-around pb-4'>
-        <Button onClick={() => loadData({ variables: { genres: "refactoring" } })} text='Refactoring' />
-        <Button onClick={() => loadData({ variables: { genres: "agile" } })} text='Agile' />
-        <Button onClick={() => loadData({ variables: { genres: "patterns" } })} text='Patterns' />
-        <Button onClick={() => loadData({ variables: { genres: "design" } })} text='Design' />
-        <Button onClick={() => loadData({ variables: { genres: "crime" } })} text='Crime' />
-        <Button onClick={() => loadData({ variables: { genres: "classic" } })} text='Classic' />
+        <Button onClick={() => loadData({ variables: { genres: 'refactoring' } })} text='Refactoring' />
+        <Button onClick={() => loadData({ variables: { genres: 'agile' } })} text='Agile' />
+        <Button onClick={() => loadData({ variables: { genres: 'patterns' } })} text='Patterns' />
+        <Button onClick={() => loadData({ variables: { genres: 'design' } })} text='Design' />
+        <Button onClick={() => loadData({ variables: { genres: 'crime' } })} text='Crime' />
+        <Button onClick={() => loadData({ variables: { genres: 'classic' } })} text='Classic' />
         <Button onClick={() => loadData({})} text='All Genres' />
       </div>
       <div className='flex justify-center'>
@@ -55,7 +55,7 @@ const Books = ({ setError }) => {
           </tbody>
         </table>
       </div>
-    </div >
+    </div>
   )
 }
 

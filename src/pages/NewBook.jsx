@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useMutation } from '@apollo/client';
-import { create_Book, allBooks, allAuthors } from '../graphql/queries'
+import { useMutation } from '@apollo/client'
+import { createBook, allBooks, allAuthors } from '../graphql/queries'
 import Label from '../components/Label'
 import Input from '../components/Input'
 import Button from '../components/Button'
@@ -12,7 +12,7 @@ const NewBook = ({ setError }) => {
   const [genre, setGenre] = useState('')
   const [genres, setGenres] = useState([])
 
-  const [createBook] = useMutation(create_Book, {
+  const [kreateBook] = useMutation(createBook, {
     refetchQueries: [{ query: allBooks }, { query: allAuthors }],
     onError: (error) => {
       setError(error.graphQLErrors[0].message)
@@ -21,7 +21,7 @@ const NewBook = ({ setError }) => {
 
   const submit = async (event) => {
     event.preventDefault()
-    createBook({ variables: { title, author, published: parseInt(published, 10), genres } })
+    kreateBook({ variables: { title, author, published: parseInt(published, 10), genres } })
     setTitle('')
     setPublished('')
     setAuthor('')
@@ -39,27 +39,27 @@ const NewBook = ({ setError }) => {
       <h2>Add Book</h2>
       <form onSubmit={submit}>
         <div>
-          <Label text={'Title:'} />
+          <Label text='Title:' />
           <Input value={title} onChange={({ target }) => setTitle(target.value)} />
         </div>
         <div>
-          <Label text={'Author:'} />
+          <Label text='Author:' />
           <Input value={author} onChange={({ target }) => setAuthor(target.value)} />
         </div>
         <div>
-          <Label text={'Published:'} />
-          <Input type="number" value={published} onChange={({ target }) => setPublished(target.value)} />
+          <Label text='Published:' />
+          <Input type='number' value={published} onChange={({ target }) => setPublished(target.value)} />
         </div>
         <div>
-          <Label text={'Add genre:'} />
+          <Label text='Add genre:' />
           <Input value={genre} onChange={({ target }) => setGenre(target.value)} />
-          <button onClick={addGenre} type="button">Add Genre</button>
+          <button onClick={addGenre} type='button'>Add Genre</button>
         </div>
         <div>
-          <Label text={'Genres:'} />
+          <Label text='Genres:' />
           {genres.join(' ')}
         </div>
-        <Button text={'Create Book<'} />
+        <Button text='Create Book<' />
       </form>
     </div>
   )

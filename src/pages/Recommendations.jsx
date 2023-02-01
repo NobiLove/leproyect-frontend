@@ -1,7 +1,7 @@
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client'
 import React from 'react'
-import Button from '../components/Button';
-import { allBooksRecommended, me } from '../graphql/queries';
+import Button from '../components/Button'
+import { allBooksRecommended, me } from '../graphql/queries'
 
 const Recommendations = ({ setError }) => {
   const user = useQuery(me)

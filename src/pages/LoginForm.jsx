@@ -20,7 +20,7 @@ const LoginForm = ({ setError, setToken }) => {
   useEffect(() => {
     if (result.data) {
       const token = result.data.login.value
-      console.log(token);
+      console.log(token)
       setToken(token)
       localStorage.setItem('library-token', token)
       navigate('/Authors')
@@ -31,20 +31,20 @@ const LoginForm = ({ setError, setToken }) => {
     event.preventDefault()
     login({ variables: { username, password } })
   }
-  //w-full max-w-xs m-auto
+  // w-full max-w-xs m-auto
   return (
     <div className='container mx-auto flex h-screen justify-center place-items-center'>
       <form className='bg-slate-800 rounded-lg shadow-md' onSubmit={submit}>
         <div className='mx-4 my-2 py-1'>
-          <Label text={'Username: '} />
+          <Label text='Username: ' />
           <Input value={username} onChange={({ target }) => setUsername(target.value)} />
         </div>
         <div className='mx-4 my-2 py-1'>
-          <Label text={'Password: '} />
-          <Input type={'password'} value={password} onChange={({ target }) => setPassword(target.value)} />
+          <Label text='Password: ' />
+          <Input type='password' value={password} onChange={({ target }) => setPassword(target.value)} />
         </div>
         <div className='mx-4 my-8 py-1'>
-          <Button text={'Login'}>Login</Button>
+          <Button text='Login'>Login</Button>
         </div>
       </form>
     </div>
